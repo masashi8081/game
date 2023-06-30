@@ -1,2 +1,27 @@
-<h1>Public::Customers#edit</h1>
-<p>Find me in app/views/public/customers/edit.html.erb</p>
+<div class="container">
+  <div class="row my-3">
+    <div class="col-sm-6 px-sm-0 offset-sm-1 ">
+      <h1>登録情報編集</h1>
+    </div>
+  </div>
+  <%= form_for (@customer) do |f| %>
+
+  <div class="row">
+    <div class="col-3 offset-md-1"><%= f.label :ニックネーム %></div>
+    <div class="col-2"><%= f.text_field :name, autofocus: true %></div>
+  </div>
+
+  <div class="row">
+    <div class="col-3 offset-md-1"><%= f.label :メールアドレス %></div>
+    <div class="col-3"><%= f.email_field :email, autofocus: true, autocomplete: "email" %></div>
+  </div>
+
+  <div class="row mb-2">
+    <div class="col-3 offset-sm-1">
+      <%= f.submit "編集内容を保存", class: "btn btn-success px-4 mb-2" %>
+    </div>
+      <% end %>
+    <div class="col-3 offset-sm-1">
+      <%= link_to "退会する", customers_quit_path, class: "btn btn-danger px-4 mb-2"%>
+    </div>
+  </div>

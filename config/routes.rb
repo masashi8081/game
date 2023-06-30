@@ -1,25 +1,7 @@
 Rails.application.routes.draw do
 
-  namespace :admin do
-    get 'customers/show'
-    get 'customers/index'
-    get 'customers/edit'
-  end
-  namespace :public do
-    get 'reviews/new'
-    get 'reviews/show'
-    get 'reviews/index'
-    get 'reviews/edit'
-  end
-  namespace :public do
-    get 'games/show'
-    get 'games/index'
-  end
-  namespace :public do
-    get 'customers/show'
-    get 'customers/edit'
-    get 'customers/quit'
-  end
+
+
   devise_for :customers,skip: [:passwords], controllers: {
   registrations: "public/registrations",
   sessions: 'public/sessions'
@@ -36,7 +18,11 @@ namespace :admin do
   end
 
   scope module: :public do
+    get "/customers/quit" => "customers#quit"
+    patch "/customers/out" => "customers#out"
     resources :customers, only: [:show, :update, :edit]
+    resources :games, only: [:show, :index]
+    resources :reviews, only: [:new, :show, :edit, :index]
     root to: "homes#top"
     get "/about" => 'homes#about', as: 'about'
   end
