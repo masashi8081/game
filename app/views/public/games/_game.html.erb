@@ -1,0 +1,7 @@
+<% @games.first(10).each do |game| %>
+<div class="list-group">
+ <%= image_tag (item['largeImageUrls'][0]) %>
+ <%= link_to item.name, "#{item.url}" %>
+ <%= number_with_delimiter(item.price) %>円
+</div>
+<% end %>

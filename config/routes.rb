@@ -18,10 +18,11 @@ namespace :admin do
   end
 
   scope module: :public do
+
     get "/customers/quit" => "customers#quit"
     patch "/customers/out" => "customers#out"
     resources :customers, only: [:show, :update, :edit]
-    resources :games, only: [:show, :index]
+    resources :games, only: [:show, :index, :search]
     resources :reviews, only: [:new, :show, :edit, :index]
     root to: "homes#top"
     get "/about" => 'homes#about', as: 'about'
