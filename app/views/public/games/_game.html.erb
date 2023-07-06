@@ -1,7 +1,10 @@
-<% @games.first(10).each do |game| %>
-<div class="list-group">
- <%= image_tag (item['largeImageUrls'][0]) %>
- <%= link_to item.name, "#{item.url}" %>
- <%= number_with_delimiter(item.price) %>円
-</div>
+
+<% if @games %>
+  <% @games.each do |game| %>
+  #ご自身が表示させたいデータを記載してください。
+  #以下のコードではは画像、タイトル、著者名、商品の説明を表示させています。
+    <%= image_tag game.largeImage_url %>
+    <%= game.title %>
+    <%= game.author %>
+  <% end %>
 <% end %>

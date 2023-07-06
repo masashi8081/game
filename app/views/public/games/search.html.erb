@@ -1,0 +1,16 @@
+<h1>製品名を入力して検索</h1>
+<div class="search-box">
+<%= form_tag(games_search_path, method: :get) do %>
+  <%= text_field_tag :title, @title %>
+  <%= button_tag type: "submit" %>
+<% end %>
+<% if @games %>
+  <% @games.each do |game| %>
+
+
+    <%= link_to game.title, game_path(game) %>
+    <%= game.largeimage_url %>
+
+  <% end %>
+<% end %>
+</div>
