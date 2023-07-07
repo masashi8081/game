@@ -42,18 +42,18 @@ class Public::GamesController < ApplicationController
     isbn = result["isbn"]
     label = result["label"]
     hardware = result["hardware"]
-    sales_date = result["sales_date"]
-    mediumimage_url = result["mediumimage_url"]
-    largeimage_url = result["largeimage_url"]
+    salesDate = result["salesDate"]
+    mediumImageUrl = result["mediumImageUrl"]
+    largeImageUrl = result["largeImageUrl"]
 
     {
       title: title,
       isbn: isbn,
       label: label,
       hardware: hardware,
-      sales_date: sales_date,
-      mediumimage_url: mediumimage_url,
-      largeimage_url: largeimage_url
+      salesDate: salesDate,
+      mediumImageUrl: mediumImageUrl,
+      largeImageUrl: largeImageUrl
     }
   end
 end
