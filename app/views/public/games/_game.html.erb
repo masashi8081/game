@@ -1,10 +1,28 @@
-
-<% if @games %>
-  <% @games.each do |game| %>
-  #ご自身が表示させたいデータを記載してください。
-  #以下のコードではは画像、タイトル、著者名、商品の説明を表示させています。
-    <%= image_tag game.largeImage_url %>
-    <%= game.title %>
-    <%= game.author %>
-  <% end %>
-<% end %>
+<div class="container mt-5 text-center">
+  <div class="row">
+    <div class="col-sm-4 text-xs-right text-sm-right text-md-right">
+      <p><%= image_tag game.largeImageUrl, width: "60%" %></p>
+    </div>
+    <div class="col-sm-8">
+      <div class="game-details">
+        <h2><strong><%= game.title %></strong></h2>
+    　  <table class="table">
+    　     <thead>
+    　       <tr>
+              <th>発売元</th>
+              <th>対応機種</th>
+              <th>発売日</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><%= game.label %></td>
+              <td><%= game.hardware %></td>
+              <td><%= game.salesDate %></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
