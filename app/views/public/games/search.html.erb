@@ -12,12 +12,17 @@
       <% end %>
     </div>
   </div>
-  <div class="row my-3">
+  <div class="row mt-3">
     <% if @games %>
-      <% @games.each do |game| %>
-      <div class="col-sm-8 px-sm-0 offset-sm-1">
+      <% @games.first(10).each do |game| %>
+      <div class="col-sm-4 text-md-right">
         <%= image_tag game.largeImageUrl %>
-        <%= link_to game.title, game_path(game) %>
+      </div>
+      <div class="col-sm-8">
+        <h5><%= link_to game.title, new_review_path %></h5>
+        <p>発売元: <%= game.label %></p>
+        <p>対応機種: <%= game.hardware %></p>
+        <p>発売日: <%= game.salesDate %></p>
       </div>
       <% end %>
     <% else %>

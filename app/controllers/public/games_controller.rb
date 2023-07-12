@@ -56,5 +56,9 @@ class Public::GamesController < ApplicationController
       largeImageUrl: largeImageUrl
     }
   end
+
+  def game_params
+    params.require(:game).permit(:title, :isbn, :label, :hardware, :salesDate, :mediumImageUrl, :largeImageUrl)
+  end
 end
 

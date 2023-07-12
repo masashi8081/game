@@ -1,1 +1,31 @@
-<%= render 'public/games/game', game: @game %>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 text-center">
+      <div id="stars">
+        <label>評価</label>
+      </div>
+
+      <script>
+        let elem = document.querySelector('#stars');
+        let opt = {
+          starOn: "<%= asset_path('star-on.png') %>",
+          starOff: "<%= asset_path('star-off.png') %>",
+          starHalf: "<%= asset_path('star-half.png') %>",
+          scoreName: 'review[rate]'
+        };
+        window.raty(elem, opt);
+      </script>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12 text-center">
+    <%= form_with model: @review, local: true do |f| %>
+      <div class="form-group">
+        <%= f.label :コメント %>
+        <%= f.text_area :comment, size: "50x5" %>
+      </div>
+    <% end %>
+    </div>
+  </div>
+</div>
