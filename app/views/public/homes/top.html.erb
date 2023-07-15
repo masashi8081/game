@@ -1,15 +1,18 @@
 <div class="container">
-  <div class="row">
-    <div class="col-xs-12 mx-auto">
+  <div class="row-md-9">
+    <div class="col-md-9 mx-auto">
       <%= image_tag '/assets/gamenet.home.jpg', :size =>'100%' %>
-
+    </div>
+    <div class="col-md-9 text-center">
+      <h4><%= link_to "レビューする", games_search_path %></h4>
     </div>
   </div>
+  <div class="row-md-3">
+    <div class="col-md-9">
+      <h2>新着レビュー</h2>
+
+
+    </div>
+      <div class="all-items-show-button"><%= link_to "全てのレビューをみる", reviews_path %></div>
+  </div>
 </div>
-
-<div class="all-items-show-button"><%= link_to "レビューをする", games_search_path %></div>
-<div class="container new-review">
-  <h2>新着レビュー</h2>
-
-  <div class="all-items-show-button"><%= link_to "全てのレビューをみる", reviews_path %></div>
- </div>

@@ -17,6 +17,14 @@ class Admin::SessionsController < Devise::SessionsController
   # def destroy
   #   super
   # end
+  def after_sign_in_path_for(_resource)
+    admin_path
+  end
+
+  def destroy
+    reset_session
+    redirect_to new_admin_session_path
+  end
 
   # protected
 

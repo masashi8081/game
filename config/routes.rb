@@ -2,6 +2,14 @@ Rails.application.routes.draw do
 
 
 
+  namespace :admin do
+    get 'reviews/show'
+    get 'reviews/index'
+    get 'reviews/edit'
+  end
+  namespace :admin do
+    get 'homes/top'
+  end
   devise_for :customers,skip: [:passwords], controllers: {
   registrations: "public/registrations",
   sessions: 'public/sessions'
@@ -12,8 +20,9 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
 }
 
 namespace :admin do
-    get  "/" => "homes#top"
+    get  "/" => "reviews#index"
     resources :customers, only: [:index, :show, :edit, :update]
+    resources :reviews, only: [:index, :show, :edit, :update]
 
   end
 

@@ -1,6 +1,7 @@
 class Public::ReviewsController < ApplicationController
   def new
      @review = Review.new
+     @game = Game.
   end
 
   def show
@@ -29,23 +30,6 @@ class Public::ReviewsController < ApplicationController
     params.require(:review).permit(:rate, :comment)
   end
 
-  def read(result)
-    title = result["title"]
-    isbn = result["isbn"]
-    label = result["label"]
-    hardware = result["hardware"]
-    salesDate = result["salesDate"]
-    mediumImageUrl = result["mediumImageUrl"]
-    largeImageUrl = result["largeImageUrl"]
 
-    {
-      title: title,
-      isbn: isbn,
-      label: label,
-      hardware: hardware,
-      salesDate: salesDate,
-      mediumImageUrl: mediumImageUrl,
-      largeImageUrl: largeImageUrl
-    }
-  end
+
 end
