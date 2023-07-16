@@ -19,14 +19,14 @@ class Public::GamesController < ApplicationController
       results = RakutenWebService::Books::Game.search({
         title: @title,
       })
-      #この部分で「@books」にAPIからの取得したJSONデータを格納していきます。
+      #この部分で「@games」にAPIからの取得したJSONデータを格納していきます。
       #read(result)については、privateメソッドとして、設定しております。
       results.each do |result|
         game = Game.new(read(result))
         @games << game
       end
     end
-    #「@books」内の各データをそれぞれ保存していきます。
+    #「@games」内の各データをそれぞれ保存していきます。
     #すでに保存済の本は除外するためにunlessの構文を記載しています。
     @games.each do |game|
       unless Game.all.include?(game)

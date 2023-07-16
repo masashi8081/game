@@ -1,11 +1,12 @@
 <div class="container text-center">
+  <div class="container mt-5 text-center">
   <div class="row">
     <div class="col-sm-4 text-xs-right text-sm-right text-md-right">
-      <p><%= image_tag @game.largeImageUrl, width: "60%" %></p>
+      <p><%= image_tag params[:image], width: "60%" %></p>
     </div>
     <div class="col-sm-8">
       <div class="game-details">
-        <h2><strong><%= @game.title %></strong></h2>
+        <h2><strong><%= params[:title] %></strong></h2>
     　  <table class="table">
     　     <thead>
     　       <tr>
@@ -16,15 +17,17 @@
           </thead>
           <tbody>
             <tr>
-              <td><%= @game.label %></td>
-              <td><%= @game.hardware %></td>
-              <td><%= @game.salesDate %></td>
+              <td><%= params[:label] %></td>
+              <td><%= params[:hardware] %></td>
+              <td><%= params[:sales_date] %></td>
             </tr>
           </tbody>
         </table>
       </div>
     </div>
   </div>
+</div>
+
   <div class="row">
     <div class="col-md-12 text-center">
       <div id="stars">

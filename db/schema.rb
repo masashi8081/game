@@ -42,7 +42,7 @@ ActiveRecord::Schema.define(version: 2023_07_07_122541) do
     t.string "title", null: false
     t.string "label"
     t.string "hardware"
-    t.datetime "salesDate"
+    t.string "salesDate"
     t.string "mediumImageUrl"
     t.string "largeImageUrl"
     t.datetime "created_at", precision: 6, null: false

@@ -1,7 +1,6 @@
 class Public::ReviewsController < ApplicationController
   def new
      @review = Review.new
-     @game = Game.
   end
 
   def show
@@ -30,6 +29,26 @@ class Public::ReviewsController < ApplicationController
     params.require(:review).permit(:rate, :comment)
   end
 
+  #「楽天APIのデータから必要なデータを絞り込む」、且つ「対応するカラムにデータを格納する」メソッドを設定していきます。
+  def read(result)
+    title = result["title"]
+    isbn = result["isbn"]
+    label = result["label"]
+    hardware = result["hardware"]
+    salesDate = result["salesDate"]
+    mediumImageUrl = result["mediumImageUrl"]
+    largeImageUrl = result["largeImageUrl"]
+
+    {
+      title: title,
+      isbn: isbn,
+      label: label,
+      hardware: hardware,
+      salesDate: salesDate,
+      mediumImageUrl: mediumImageUrl,
+      largeImageUrl: largeImageUrl
+    }
+  end
 
 
 end

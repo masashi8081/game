@@ -4,10 +4,10 @@ class CreateGames < ActiveRecord::Migration[6.1]
        t.string :title, null: false
        t.string :label
        t.string :hardware
-       t.datetime :sales_date
+       t.string :salesDate
        t.bigint :isbn, null: false, primary_key: true
-       t.string :mediumimage_url
-       t.string :largeimage_url
+       t.string :mediumImageUrl
+       t.string :largeImageUrl
 
 
        t.timestamps
