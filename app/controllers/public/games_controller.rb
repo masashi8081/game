@@ -1,6 +1,7 @@
 class Public::GamesController < ApplicationController
   def show
     @game = Game.find(params[:id])
+    @review = Review.new
   end
 
   def index
@@ -21,6 +22,7 @@ class Public::GamesController < ApplicationController
       })
       #この部分で「@games」にAPIからの取得したJSONデータを格納していきます。
       #read(result)については、privateメソッドとして、設定しております。
+      #byebug
       results.each do |result|
         game = Game.new(read(result))
         @games << game
@@ -39,7 +41,7 @@ class Public::GamesController < ApplicationController
   #「楽天APIのデータから必要なデータを絞り込む」、且つ「対応するカラムにデータを格納する」メソッドを設定していきます。
   def read(result)
     title = result["title"]
-    isbn = result["isbn"]
+    #isbn = result["isbn"]
     label = result["label"]
     hardware = result["hardware"]
     salesDate = result["salesDate"]
@@ -48,7 +50,7 @@ class Public::GamesController < ApplicationController
 
     {
       title: title,
-      isbn: isbn,
+      #isbn: isbn,
       label: label,
       hardware: hardware,
       salesDate: salesDate,
@@ -58,7 +60,8 @@ class Public::GamesController < ApplicationController
   end
 
   def game_params
-    params.require(:game).permit(:title, :isbn, :label, :hardware, :salesDate, :mediumImageUrl, :largeImageUrl)
+    #params.require(:game).permit(:title, :isbn, :label, :hardware, :salesDate, :mediumImageUrl, :largeImageUrl)
+    params.require(:game).permit(:title, :label, :hardware, :salesDate, :mediumImageUrl, :largeImageUrl)
   end
 end
 

@@ -1,15 +1,5 @@
 Rails.application.routes.draw do
 
-
-
-  namespace :admin do
-    get 'reviews/show'
-    get 'reviews/index'
-    get 'reviews/edit'
-  end
-  namespace :admin do
-    get 'homes/top'
-  end
   devise_for :customers,skip: [:passwords], controllers: {
   registrations: "public/registrations",
   sessions: 'public/sessions'
@@ -32,7 +22,7 @@ namespace :admin do
     patch "/customers/out" => "customers#out"
     resources :customers, only: [:show, :update, :edit]
     resources :games, only: [:show, :index]
-    resources :reviews, only: [:new, :show, :edit, :index]
+    resources :reviews, only: [:new, :show, :edit, :index, :create, :update]
     root to: "homes#top"
     get "/about" => 'homes#about', as: 'about'
   end

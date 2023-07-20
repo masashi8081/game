@@ -6,3 +6,76 @@
     <% end %>
   </div>
 </div>
+
+ <div class="row">
+    <div class="col-md-12 text-center">
+      <div id="stars">
+        <label>評価</label>
+      </div>
+      <div>
+
+        <% @game.reviews.each do |review| %>
+
+          <p><%= review.comment %></p>
+          <p><%= review.rate %></p>
+          <div id="rate_<%= review.id %>">
+            <label>評価</label>
+          </div>
+
+          <script>
+            let elem2 = document.querySelector("#rate_<%= review.id %>");
+            let opt2 = {
+              starOn: "<%= asset_path('star-on.png') %>",
+              starOff: "<%= asset_path('star-off.png') %>",
+              starHalf: "<%= asset_path('star-half.png') %>",
+              score: "<%= review.rate %>"
+              readOnly: true;
+            };
+            //window.raty(elem, opt);
+          </script>
+        <% end %>
+
+      <script>
+      //  let elem = document.querySelector('#stars');
+      //  let opt = {
+      //  starOn: "<%= asset_path('star-on.png') %>",
+      //    starOff: "<%= asset_path('star-off.png') %>",
+      //    starHalf: "<%= asset_path('star-half.png') %>",
+      //    scoreName: 'review[rate]'
+
+        //};
+        //window.raty(elem, opt);
+      </script>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12 text-center">
+    <%= form_with model: @review, local: true do |f| %>
+      <div class="form-group row" id="rate">
+        <%= f.label :rate,'評価 ', class:'col-md-3 col-form-label' %>
+        <%= f.hidden_field :rate, id: :review_rate %>
+        <%= f.hidden_field :game_id, id: :geme_id, value: @game.id %>
+　　　</div>
+      <div class="form-group">
+        <%= f.label :コメント %>
+        <%= f.text_area :comment, size: "50x5" %>
+      </div>
+      <div class="form-action">
+        <th><%= f.submit "送信", class:"btn btn-success" %></th>
+      </div>
+    <% end %>
+    </div>
+  </div>
+
+      <script>
+        let elem = document.querySelector('#rate');
+        let opt = {
+          starOn: "<%= asset_path('star-on.png') %>",
+          starOff: "<%= asset_path('star-off.png') %>",
+          starHalf: "<%= asset_path('star-half.png') %>",
+          scoreName: 'review[rate]'
+
+        };
+        window.raty(elem, opt);
+      </script>

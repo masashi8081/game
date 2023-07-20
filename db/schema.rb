@@ -38,7 +38,7 @@ ActiveRecord::Schema.define(version: 2023_07_07_122541) do
     t.index ["reset_password_token"], name: "index_customers_on_reset_password_token", unique: true
   end
 
-  create_table "games", primary_key: "isbn", force: :cascade do |t|
+  create_table "games", force: :cascade do |t|
     t.string "title", null: false
     t.string "label"
     t.string "hardware"
@@ -49,7 +49,7 @@ ActiveRecord::Schema.define(version: 2023_07_07_122541) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "reviews", id: false, force: :cascade do |t|
+  create_table "reviews", force: :cascade do |t|
     t.integer "game_id", null: false
     t.integer "customer_id", null: false
     t.float "rate"

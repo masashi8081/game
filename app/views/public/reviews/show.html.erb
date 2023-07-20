@@ -1,1 +1,54 @@
+<div class="container text-center">
+  <div class="container mt-5 text-center">
+  <div class="row">
+    <div class="col-sm-4 text-xs-right text-sm-right text-md-right">
+      <p><%= image_tag params[:image], width: "60%" %></p>
+    </div>
+    <div class="col-sm-8">
+      <div class="game-details">
+        <h2><strong><%= params[:title] %></strong></h2>
+    　  <table class="table">
+    　     <thead>
+    　       <tr>
+              <th>発売元</th>
+              <th>対応機種</th>
+              <th>発売日</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><%= params[:label] %></td>
+              <td><%= params[:hardware] %></td>
+              <td><%= params[:sales_date] %></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
 
+<div class="row">
+    <div class="col-md-12 text-center">
+      <div id="show-stars">
+        <label>評価</label>
+      </div>
+
+      <script>
+        let showRateElement = document.querySelector('#show-stars');
+        let showOpt = {
+        starOn: "<%= asset_path('star-on.png') %>",
+        starOff: "<%= asset_path('star-off.png') %>",
+        starHalf: "<%= asset_path('star-half.png') %>",
+        scoreName: 'book[star]',
+        score: "<%= @book.star %>",
+        readOnly: true
+        };
+        window.raty(showRateElement, showOpt);
+      </script>
+    </div>
+    <div class="col-md-4">
+      <h5>コメント</h5>
+      <%= @review.comment %>
+    </div>
+</div>

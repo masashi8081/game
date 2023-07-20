@@ -19,7 +19,11 @@
         <%= image_tag game.largeImageUrl %>
       </div>
       <div class="col-sm-8">
-        <h5><%= link_to game.title, new_review_path(label: game.label, hardware: game.hardware, sales_date: game.salesDate, image: game.largeImageUrl, title: game.title) %></h5>
+        <h5>
+          <%#= game.inspect %>
+          <%#= link_to game.title, new_review_path(label: game.label, hardware: game.hardware, sales_date: game.salesDate, image: game.largeImageUrl, title: game.title) %>
+          <%= link_to game.title, game_path(game.id) %>
+        </h5>
         <p>発売元: <%= game.label %></p>
         <p>対応機種: <%= game.hardware %></p>
         <p>発売日: <%= game.salesDate %></p>
