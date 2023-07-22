@@ -1,5 +1,6 @@
 class Public::HomesController < ApplicationController
   def top
+    @reviews = Review.all.order(created_at: :desc)
   end
 
   def about

@@ -1,18 +1,32 @@
 <div class="container">
-  <div class="row-md-9">
-    <div class="col-md-9 mx-auto">
+  <div class="row">
+    <div class="col-md-12 text-center">
       <%= image_tag '/assets/gamenet.home.jpg', :size =>'100%' %>
     </div>
-    <div class="col-md-9 text-center">
-      <h4><%= link_to "レビューする", games_search_path %></h4>
+    <div class="col-md-12 text-center">
+      <h4>>><%= link_to "レビューする", games_search_path %><<</h4>
     </div>
   </div>
-  <div class="row-md-3">
-    <div class="col-md-9">
+  <div class="row">
+    <div class="col-md-12">
       <h2>新着レビュー</h2>
-
-
     </div>
+    <div class="row">
+      <% @reviews.first(4).each do |review| %>
+        <div class="col-md-3 col-sm-6">
+          <div class="card w-100 bg-transparent border-0" style="width: 18rem;">
+            <div class="img-wrap"><%= image_tag review.game.mediumImageUrl %></div>
+          </div>
+          <div class="card-body">
+            <%= link_to game_path(review.game) do %>
+              <p class="card-text"><%= review.game.title %></p>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+   </div>
+   <div>
       <div class="all-items-show-button"><%= link_to "全てのレビューをみる", reviews_path %></div>
   </div>
 </div>

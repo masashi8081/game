@@ -1,73 +1,78 @@
-<%= render 'game', game: @game %>
-<div class="row">
-  <div class="col-sm-12 text-center">
-    <%= link_to new_review_path do%>
-      <h2><%= @game.title %>をレビューする</h2>
-    <% end %>
-  </div>
-</div>
-
- <div class="row">
-    <div class="col-md-12 text-center">
-      <div id="stars">
-        <label>評価</label>
-      </div>
-      <div>
-
-        <% @game.reviews.each do |review| %>
-
-          <p><%= review.comment %></p>
-          <p><%= review.rate %></p>
-          <div id="rate_<%= review.id %>">
-            <label>評価</label>
-          </div>
-
-          <script>
-            let elem2 = document.querySelector("#rate_<%= review.id %>");
-            let opt2 = {
-              starOn: "<%= asset_path('star-on.png') %>",
-              starOff: "<%= asset_path('star-off.png') %>",
-              starHalf: "<%= asset_path('star-half.png') %>",
-              score: "<%= review.rate %>"
-              readOnly: true;
-            };
-            //window.raty(elem, opt);
-          </script>
-        <% end %>
-
-      <script>
-      //  let elem = document.querySelector('#stars');
-      //  let opt = {
-      //  starOn: "<%= asset_path('star-on.png') %>",
-      //    starOff: "<%= asset_path('star-off.png') %>",
-      //    starHalf: "<%= asset_path('star-half.png') %>",
-      //    scoreName: 'review[rate]'
-
-        //};
-        //window.raty(elem, opt);
-      </script>
-    </div>
-  </div>
+<div class="container">
+  <%= render 'game', game: @game %>
 
   <div class="row">
     <div class="col-md-12 text-center">
-    <%= form_with model: @review, local: true do |f| %>
-      <div class="form-group row" id="rate">
-        <%= f.label :rate,'評価 ', class:'col-md-3 col-form-label' %>
-        <%= f.hidden_field :rate, id: :review_rate %>
-        <%= f.hidden_field :game_id, id: :geme_id, value: @game.id %>
-　　　</div>
-      <div class="form-group">
-        <%= f.label :コメント %>
-        <%= f.text_area :comment, size: "50x5" %>
+      <div id="stars">
+        <label></label>
       </div>
-      <div class="form-action">
-        <th><%= f.submit "送信", class:"btn btn-success" %></th>
-      </div>
-    <% end %>
     </div>
   </div>
+  <div class="container-md-12 text-center">
+    <% @game.reviews.each do |review| %>
+      <div class="row">
+        <div class="col-md-2 text-right">
+          <%= review.created_at.strftime('%Y/%m/%d %H:%M') %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-2 text-right "><h5>投稿者</h5></div>
+        <div class="col-md-3 text-left"><%= @customer.name %>さん</div>
+      </div>
+      <div class="row">
+        <div class="col-md-12 text-center">
+          <p><%= review.rate %><span id="rate_<%= review.id %>"></span></p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-2 text-right"><h5>コメント</h5></div>
+        <div class="col-md-3"><%= review.comment %></div>
+      </div>
 
+      <div class="row">
+        <div class="col-md-12 text-center">
+          <div id="rate_<%= review.id %>">
+              <label></label>
+          </div>
+        </div>
+      </div>
+
+          <script>
+             var elem_star = document.querySelector("#rate_<%= review.id %>");
+             var opt_star = {
+              starOn: "<%= asset_path('star-on.png') %>",
+              starOff: "<%= asset_path('star-off.png') %>",
+              starHalf: "<%= asset_path('star-half.png') %>",
+              score: "<%= review.rate %>",
+              readOnly: true,
+            };
+            window.raty(elem_star, opt_star);
+          </script>
+          <div class="border-bottom" style="padding:10px;"></div>
+        <% end %>
+
+  </div>
+
+
+   <div class="row">
+     <div class="col-md-12 text-center">
+      <%= form_with model: @review_new, local: true do |f| %>
+        <div class="form-group row" id="rate">
+          <%= f.label :rate,'評価 ', class:'col-md-3 col-form-label' %>
+          <%= f.hidden_field :rate, id: :review_rate %>
+          <%= f.hidden_field :game_id, id: :game_id, value: @game.id %>
+　　　  </div>
+        <div class="form-group">
+          <%= f.label :コメント %>
+          <%= f.text_area :comment, size: "50x5" %>
+        </div>
+        <div class="form-action">
+          <th><%= f.submit "送信", class:"btn btn-success" %></th>
+        </div>
+      <% end %>
+     </div>
+   </div>
+　 <div class="row">
       <script>
         let elem = document.querySelector('#rate');
         let opt = {
@@ -79,3 +84,5 @@
         };
         window.raty(elem, opt);
       </script>
+   </div>
+</div>

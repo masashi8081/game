@@ -1,10 +1,14 @@
-
-
-<% reviews.each do |review| %>
-      <tr>
-      <td><%= link_to(review.customer) do %>
-          <%= image_tag params[:image], size:'50x50' %>
-          <% end %>
-      </td>
-          <%= params[:title] %>
-<% end %>
+<div class="container">
+  <div class="row text-center">
+    <% @reviews.each do |review| %>
+      <div class="col-md-4 text-right">
+        <%= image_tag review.game.largeImageUrl %>
+      </div>
+      <div class="col-md-8 text-center">
+        <%= link_to game_path(review.game) do %>
+          <p><%= review.game.title %></p>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+</div>

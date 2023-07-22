@@ -1,7 +1,8 @@
 class Public::GamesController < ApplicationController
   def show
     @game = Game.find(params[:id])
-    @review = Review.new
+    @review_new = Review.new
+    @customer = current_customer
   end
 
   def index
@@ -22,17 +23,16 @@ class Public::GamesController < ApplicationController
       })
       #この部分で「@games」にAPIからの取得したJSONデータを格納していきます。
       #read(result)については、privateメソッドとして、設定しております。
-      #byebug
       results.each do |result|
-        game = Game.new(read(result))
-        @games << game
+          game = Game.new(read(result))
+          @games << game
       end
     end
     #「@games」内の各データをそれぞれ保存していきます。
-    #すでに保存済の本は除外するためにunlessの構文を記載しています。
+    #すでに保存済のgameは除外するためにunlessの構文を記載しています。
     @games.each do |game|
-      unless Game.all.include?(game)
-        game.save
+      unless Game.exists?(title: game.title)
+        game.save!
       end
     end
   end

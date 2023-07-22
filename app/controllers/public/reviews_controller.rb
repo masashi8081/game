@@ -9,18 +9,18 @@ class Public::ReviewsController < ApplicationController
   end
 
   def index
-    @reviews = Review.all
+    @reviews = Review.all.order(created_at: :desc)
   end
 
   def edit
   end
 
   def create
-    #byebug
+
     @review = Review.new(review_params)
     @review.customer_id = current_customer.id
     if @review.save
-      redirect_to game_path(@review), notice: "You have created book successfully."
+      redirect_to game_path(@review.game_id), notice: "You have created book successfully."
     else
        render :new
     end
