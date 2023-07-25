@@ -20,8 +20,7 @@
       </div>
       <div class="col-sm-8">
         <h5>
-          <%#= game.inspect %>
-          <%#= link_to game.title, new_review_path(label: game.label, hardware: game.hardware, sales_date: game.salesDate, image: game.largeImageUrl, title: game.title) %>
+
           <% game_id = Game.find_by(title: game.title).id %>
           <%= link_to game.title, game_path(game_id) %>
         </h5>

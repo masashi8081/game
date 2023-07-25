@@ -3,6 +3,7 @@ class Admin::ReviewsController < ApplicationController
   end
 
   def index
+    @reviews = Review.all.order(created_at: :desc)
   end
 
   def edit

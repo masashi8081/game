@@ -1,2 +1,17 @@
-<h1>Admin::Reviews#index</h1>
-<p>Find me in app/views/admin/reviews/index.html.erb</p>
+<div class="container">
+  <div class="row">
+    <% @reviews.each do |review| %>
+      <div class="col-md-4 text-right">
+        <%= image_tag review.game.largeImageUrl %>
+      </div>
+      <div class="col-md-8">
+        <%= link_to admin_game_path(review.game) do %>
+          <p><%= review.game.title %></p>
+        <% end %>
+      </div>
+      <div class="col-md-12">
+        <div class="border-bottom" style="padding:10px;"></div>
+      </div>
+    <% end %>
+  </div>
+</div>

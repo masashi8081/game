@@ -1,5 +1,5 @@
 <div class="container">
-  <div class="row text-center">
+  <div class="row text-md-center">
     <% @reviews.each do |review| %>
       <div class="col-md-4 text-right">
         <%= image_tag review.game.largeImageUrl %>
@@ -8,6 +8,9 @@
         <%= link_to game_path(review.game) do %>
           <p><%= review.game.title %></p>
         <% end %>
+      </div>
+      <div class="col-md-12">
+        <div class="border-bottom" style="padding:10px;"></div>
       </div>
     <% end %>
   </div>

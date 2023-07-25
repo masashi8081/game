@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+
   devise_for :customers,skip: [:passwords], controllers: {
   registrations: "public/registrations",
   sessions: 'public/sessions'
@@ -13,6 +14,7 @@ namespace :admin do
     get  "/" => "reviews#index"
     resources :customers, only: [:index, :show, :edit, :update]
     resources :reviews, only: [:index, :show, :edit, :update]
+    resources :games, only: [:show, :edit, :index, :update]
 
   end
 
