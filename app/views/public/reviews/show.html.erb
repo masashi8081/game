@@ -1,12 +1,11 @@
-<div class="container text-center">
-  <div class="container mt-5 text-center">
+<div class="container mt-5 text-center">
   <div class="row">
     <div class="col-sm-4 text-xs-right text-sm-right text-md-right">
-      <p><%= image_tag params[:image], width: "60%" %></p>
+      <p><%= image_tag @game.largeImageUrl, width: "60%" %></p>
     </div>
     <div class="col-sm-8">
       <div class="game-details">
-        <h2><strong><%= params[:title] %></strong></h2>
+        <h2><strong><%= @game.title %></strong></h2>
     　  <table class="table">
     　     <thead>
     　       <tr>
@@ -17,9 +16,9 @@
           </thead>
           <tbody>
             <tr>
-              <td><%= params[:label] %></td>
-              <td><%= params[:hardware] %></td>
-              <td><%= params[:sales_date] %></td>
+              <td><%= @game.label %></td>
+              <td><%= @game.hardware %></td>
+              <td><%= @game.salesDate %></td>
             </tr>
           </tbody>
         </table>
@@ -28,27 +27,62 @@
   </div>
 </div>
 
-<div class="row">
-    <div class="col-md-12 text-center">
-      <div id="show-stars">
-        <label>評価</label>
+
+<div class="container-md-12 text-center">
+
+      <div class="row">
+        <div class="col-md-2 text-right">
+          <%= @review.created_at.strftime('%Y/%m/%d %H:%M') %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-2 text-right "><h5>投稿者</h5></div>
+        <div class="col-md-3 text-left"><%= @customer.name %>さん</div>
+      </div>
+      <div class="row">
+        <div class="col-md-12 text-center">
+          <p><%= @review.rate %><span id="rate_<%= @review.id %>"></span></p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-2 text-right"><h5>レビュー</h5></div>
+        <div class="col-md-12"><%= @review.comment %></div>
       </div>
 
-      <script>
-        let showRateElement = document.querySelector('#show-stars');
-        let showOpt = {
-        starOn: "<%= asset_path('star-on.png') %>",
-        starOff: "<%= asset_path('star-off.png') %>",
-        starHalf: "<%= asset_path('star-half.png') %>",
-        scoreName: 'book[star]',
-        score: "<%= @book.star %>",
-        readOnly: true
-        };
-        window.raty(showRateElement, showOpt);
-      </script>
-    </div>
-    <div class="col-md-4">
-      <h5>コメント</h5>
-      <%= @review.comment %>
+      <div class="row">
+        <div class="col-md-12 text-center">
+          <div id="rate_<%= @review.id %>">
+              <label></label>
+          </div>
+        </div>
+      </div>
+
+          <script>
+             var elem_star = document.querySelector("#rate_<%= @review.id %>");
+             var opt_star = {
+              starOn: "<%= asset_path('star-on.png') %>",
+              starOff: "<%= asset_path('star-off.png') %>",
+              starHalf: "<%= asset_path('star-half.png') %>",
+              score: "<%= @review.rate %>",
+              readOnly: true,
+            };
+            window.raty(elem_star, opt_star);
+          </script>
+       <div class="border-bottom" style="padding:10px;"></div>
+
+    <div class="row">
+      <div class="col-md-3">
+        <% @review.review_comments.each do |review_comment| %>
+          <%= @review_comment.customer.name %>
+          <%= @review_comment.created_at.strftime('%Y/%m/%d') %><%= @review_comment.comment %>
+        <% end %>
+      </div>
+      <div class="col-md-3">
+        <%= form_with model: @review_comments, local: true do |f| %>
+          <%= f.text_area :comment, rows: '5', placeholder: "コメントをここに" %>
+          <%= f.submit "送信する" %>
+        <% end %>
+      </div>
+      <div class="border-bottom" style="padding:10px;"></div>
     </div>
 </div>

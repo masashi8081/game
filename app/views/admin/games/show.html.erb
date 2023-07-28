@@ -37,13 +37,14 @@
   <div class="container-md-12 text-center">
     <% @game.reviews.each do |review| %>
       <div class="row">
-        <div class="col-md-2 text-right">
+        <div class="col-md-3 text-right">
           <%= review.created_at.strftime('%Y/%m/%d %H:%M') %>
+          <%= link_to "削除", admin_game_path(@game), method: :delete %>
         </div>
       </div>
       <div class="row">
         <div class="col-md-2 text-right "><h5>投稿者</h5></div>
-        <div class="col-md-3 text-left"><%= @customer.name %>さん</div>
+        <div class="col-md-3 text-left"><%#= @games.name %>さん</div>
       </div>
       <div class="row">
         <div class="col-md-12 text-center">
@@ -54,6 +55,7 @@
         <div class="col-md-2 text-right"><h5>コメント</h5></div>
         <div class="col-md-3"><%= review.comment %></div>
       </div>
+
 
       <div class="row">
         <div class="col-md-12 text-center">
@@ -76,6 +78,8 @@
           </script>
           <div class="border-bottom" style="padding:10px;"></div>
         <% end %>
+
+
 
   </div>
 

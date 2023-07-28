@@ -5,4 +5,6 @@ class Customer < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :reviews, dependent: :destroy
+  has_many :games, dependent: :destroy
+  has_many :review_comments, dependent: :destroy
 end

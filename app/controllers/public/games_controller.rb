@@ -3,6 +3,8 @@ class Public::GamesController < ApplicationController
     @game = Game.find(params[:id])
     @review_new = Review.new
     @customer = current_customer
+    @review_comment = ReviewComment.new
+
   end
 
   def index

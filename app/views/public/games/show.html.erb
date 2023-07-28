@@ -25,8 +25,8 @@
         </div>
       </div>
       <div class="row">
-        <div class="col-md-2 text-right"><h5>コメント</h5></div>
-        <div class="col-md-3"><%= review.comment %></div>
+        <div class="col-md-2 text-right"><h5>レビュー</h5></div>
+        <div class="col-md-12"><%= review.comment %></div>
       </div>
 
       <div class="row">
@@ -48,7 +48,11 @@
             };
             window.raty(elem_star, opt_star);
           </script>
-          <div class="border-bottom" style="padding:10px;"></div>
+      <div class="col-md-3">
+        <p><%= link_to "#{review.review_comments.count} コメント", review_path(review.id) %></p>
+      </div>
+
+      <div class="border-bottom" style="padding:10px;"></div>
         <% end %>
 
   </div>
@@ -63,7 +67,7 @@
           <%= f.hidden_field :game_id, id: :game_id, value: @game.id %>
 　　　  </div>
         <div class="form-group">
-          <%= f.label :コメント %>
+          <%= f.label :レビュー %>
           <%= f.text_area :comment, size: "50x5" %>
         </div>
         <div class="form-action">

@@ -8,4 +8,11 @@ class Admin::ReviewsController < ApplicationController
 
   def edit
   end
+
+  def destroy
+    @review = Review.find(params[:id])
+    review.destroy
+    redirect_to admin_game_path
+  end
+
 end
