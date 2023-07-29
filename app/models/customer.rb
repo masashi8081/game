@@ -7,4 +7,5 @@ class Customer < ApplicationRecord
   has_many :reviews, dependent: :destroy
   has_many :games, dependent: :destroy
   has_many :review_comments, dependent: :destroy
+  has_many :favorites, dependent: :destroy
 end

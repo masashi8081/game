@@ -25,7 +25,8 @@ namespace :admin do
     resources :customers, only: [:show, :update, :edit]
     resources :games, only: [:show, :index]
     resources :reviews, only: [:new, :show, :edit, :index, :destroy, :create, :update] do
-      resources :review_comments, only: [:create]
+      resource :favorites, only: [:create, :destroy]
+      resources :review_comments, only: [:create, :destroy]
     end
     root to: "homes#top"
     get "/about" => 'homes#about', as: 'about'

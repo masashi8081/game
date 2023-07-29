@@ -51,11 +51,30 @@
       <div class="col-md-3">
         <p><%= link_to "#{review.review_comments.count} コメント", review_path(review.id) %></p>
       </div>
+      <div class="row">
+        <div class="col-md-3">
+          <% if review.favorited_by?(current_customer) %>
+            <p>
+              <%= link_to review_favorites_path(review), method: :delete do %>
+              ♥<%= review.favorites.count %> いいね
+          <% end %>
+            </p>
+          <% else %>
+            <p>
+              <%= link_to review_favorites_path(review), method: :post do %>
+              ♡<%= review.favorites.count %> いいね
+          <% end %>
+            </p>
+          <% end %>
+        </div>
+      </div>
 
       <div class="border-bottom" style="padding:10px;"></div>
         <% end %>
 
   </div>
+
+
 
 
    <div class="row">

@@ -9,6 +9,7 @@ class Public::ReviewsController < ApplicationController
     @game = Game.find(@review.game.id)
     @customer = current_customer
     @review_comment = ReviewComment.new
+
   end
 
   def index
@@ -23,9 +24,9 @@ class Public::ReviewsController < ApplicationController
     @review = Review.new(review_params)
     @review.customer_id = current_customer.id
     if @review.save
-      redirect_to game_path(@review.game_id), notice: "You have created book successfully."
+      redirect_to game_path(@review.game_id), notice: "You have created review successfully."
     else
-       render :new
+      redirect_to game_path(@review.game_id)
     end
   end
 

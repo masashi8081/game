@@ -22,9 +22,6 @@
             <ul class="navbar-nav ml-auto">
             <% if admin_signed_in? %>
               <li class="nav-item">
-                <%= link_to "About", about_path %>
-              </li>
-              <li class="nav-item">
                 <%= link_to "レビュー", admin_reviews_path %>
               </li>
               <li class="nav-item">
@@ -39,10 +36,10 @@
                <%= link_to "マイページ", customer_path(id: current_customer) %>
               </li>
               <li class="nav-item">
-                <%= link_to "レビュー", games_search_path %>
+                <%= link_to "レビューする", games_search_path %>
               </li>
               <li class="nav-item">
-                <%= link_to "About", about_path %>
+                <%= link_to "レビュー一覧", reviews_path %>
               </li>
               <li class="nav-item">
                 <%= link_to "ログアウト", destroy_customer_session_path, method: :delete %>
@@ -52,7 +49,7 @@
                 <%= link_to "About", about_path %>
               </li>
               <li class="nav-item">
-                <%= link_to "レビュー", reviews_path %>
+                <%= link_to "レビュー一覧", reviews_path %>
               </li>
               <li class="nav-item">
                 <%= link_to "新規登録", new_customer_registration_path %>

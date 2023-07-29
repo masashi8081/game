@@ -43,7 +43,6 @@ class Public::GamesController < ApplicationController
   #「楽天APIのデータから必要なデータを絞り込む」、且つ「対応するカラムにデータを格納する」メソッドを設定していきます。
   def read(result)
     title = result["title"]
-    #isbn = result["isbn"]
     label = result["label"]
     hardware = result["hardware"]
     salesDate = result["salesDate"]
@@ -52,7 +51,6 @@ class Public::GamesController < ApplicationController
 
     {
       title: title,
-      #isbn: isbn,
       label: label,
       hardware: hardware,
       salesDate: salesDate,
@@ -62,7 +60,6 @@ class Public::GamesController < ApplicationController
   end
 
   def game_params
-    #params.require(:game).permit(:title, :isbn, :label, :hardware, :salesDate, :mediumImageUrl, :largeImageUrl)
     params.require(:game).permit(:title, :label, :hardware, :salesDate, :mediumImageUrl, :largeImageUrl)
   end
 end

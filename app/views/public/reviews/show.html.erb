@@ -70,19 +70,38 @@
           </script>
        <div class="border-bottom" style="padding:10px;"></div>
 
-    <div class="row">
-      <div class="col-md-3">
-        <% @review.review_comments.each do |review_comment| %>
-          <%= @review_comment.customer.name %>
-          <%= @review_comment.created_at.strftime('%Y/%m/%d') %><%= @review_comment.comment %>
-        <% end %>
+
+      <% @review.review_comments.each do |review_comment| %>
+      <div class="row">
+      　<div class="col-md-3">
+        　<%= review_comment.created_at.strftime('%Y/%m/%d') %>
+        　<% if review_comment.customer == current_customer %>
+            <%= link_to "削除", review_review_comment_path(review_comment.review, review_comment), method: :delete %>
+          <% end %>
+        </div>
       </div>
-      <div class="col-md-3">
-        <%= form_with model: @review_comments, local: true do |f| %>
-          <%= f.text_area :comment, rows: '5', placeholder: "コメントをここに" %>
-          <%= f.submit "送信する" %>
-        <% end %>
+      <div class="row">
+        <div class="col-md-3">
+          <h5><%= review_comment.customer.name %>さん</h5>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-5">
+          <%= review_comment.comment %>
+        </div>
       </div>
       <div class="border-bottom" style="padding:10px;"></div>
-    </div>
+      <% end %>
+
+      <div class="row">
+        <div class="col-md-12 text-center">
+          <%= form_with model: [@review, @review_comment] do |f| %>
+            <%= f.text_area :comment, size: "50x5", placeholder: "コメントをここに" %>
+        </div>
+        <div class="col-md-12 text-center">
+          <%= f.submit "送信する", class:"btn btn-success" %>
+        </div>
+        <% end %>
+      </div>
+
 </div>
