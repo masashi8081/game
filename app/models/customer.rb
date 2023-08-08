@@ -8,4 +8,7 @@ class Customer < ApplicationRecord
   has_many :games, dependent: :destroy
   has_many :review_comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
+
+  validates :name, presence: true
+  validates :email, presence: true
 end

@@ -20,7 +20,6 @@
       </div>
       <div class="col-sm-8">
         <h5>
-
           <% game_id = Game.find_by(title: game.title).id %>
           <%= link_to game.title, game_path(game_id) %>
         </h5>

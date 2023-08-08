@@ -22,7 +22,7 @@
             <ul class="navbar-nav ml-auto">
             <% if admin_signed_in? %>
               <li class="nav-item">
-                <%= link_to "レビュー", admin_reviews_path %>
+                <%= link_to "レビュー一覧", admin_reviews_path %>
               </li>
               <li class="nav-item">
                 <%= link_to "会員一覧", admin_customers_path %>
@@ -46,9 +46,6 @@
               </li>
             <% else %>
               <li class="nav-item">
-                <%= link_to "About", about_path %>
-              </li>
-              <li class="nav-item">
                 <%= link_to "レビュー一覧", reviews_path %>
               </li>
               <li class="nav-item">
@@ -66,7 +63,8 @@
       <div class="container mt-5">
         <div class="row">
           <div class="col mx-auto">
-            <p class="text-center">CopyRight Gamenet.inc</p>
+            <p class="text-center">CopyRight Gamenet.inc　<a href="https://webservice.rakuten.co.jp/" target="_blank"><img src="https://webservice.rakuten.co.jp/img/credit/200709/credit_31130.gif" border="0" alt="Rakuten Web Service Center" title="Rakuten Web Service Center" width="311" height="30"/></a>
+</p>
           </div>
         </div>
       </div>

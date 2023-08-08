@@ -39,7 +39,7 @@
       <div class="row">
         <div class="col-md-3 text-right">
           <%= review.created_at.strftime('%Y/%m/%d %H:%M') %>
-          <%= link_to "削除", admin_game_path(review.id), method: :delete %>
+          <%= link_to "削除", admin_game_path(review.id), method: :delete, "data-confirm" => "本当に削除しますか？" %>
         </div>
       </div>
       <div class="row">

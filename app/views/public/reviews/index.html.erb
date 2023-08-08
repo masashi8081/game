@@ -1,17 +1,53 @@
 <div class="container">
-  <div class="row text-md-center">
+  <div class="row">
+    <div class="col-md-12 text-right">
+      <%= search_form_for @search, url:reviews_path do |f| %>
+        <%= f.label :game_title_cont, "商品名を含む" %>
+        <%= f.search_field :game_title_cont %>
+        <%= f.submit %>
+      <% end %>
+    </div>
+  </div>
+
+
+  <div class="row">
     <% @reviews.each do |review| %>
-      <div class="col-md-4 text-right">
-        <%= image_tag review.game.largeImageUrl %>
+    <div class="col-sm-4 text-right">
+      <%= image_tag review.game.largeImageUrl %>
+    </div>
+
+
+    <div class="col-sm-8">
+      <%= link_to game_path(review.game) do %>
+        <p><%= review.game.title %></p>
+      <% end %>
+      <p><%= review.rate %><span id="rate_<%= review.id %>"></span></p>
+      <p><%= review.created_at.strftime('%Y/%m/%d %H:%M') %></p>
+    </div>
+
+
+    <div class="col-sm-8">
+      <div id="rate_<%= review.id %>">
+        <label></label>
       </div>
-      <div class="col-md-8 text-center">
-        <%= link_to game_path(review.game) do %>
-          <p><%= review.game.title %></p>
-        <% end %>
-      </div>
-      <div class="col-md-12">
-        <div class="border-bottom" style="padding:10px;"></div>
-      </div>
+    </div>
+
+
+          <script>
+             var elem_star = document.querySelector("#rate_<%= review.id %>");
+             var opt_star = {
+              starOn: "<%= asset_path('star-on.png') %>",
+              starOff: "<%= asset_path('star-off.png') %>",
+              starHalf: "<%= asset_path('star-half.png') %>",
+              score: "<%= review.rate %>",
+              readOnly: true,
+            };
+            window.raty(elem_star, opt_star);
+          </script>
+
+    <div class="col-md-12">
+      <div class="border-bottom" style="padding:10px;"></div>
+    </div>
     <% end %>
   </div>
 </div>

@@ -13,8 +13,14 @@ class Public::ReviewsController < ApplicationController
   end
 
   def index
-    @reviews = Review.all.order(created_at: :desc)
+    #@reviews = Review.all.order(created_at: :desc)
+    @search = Review.ransack(params[:q])
+    @reviews = @search.result(distinct: true).order(created_at: :desc)
+    #@game = @search.result
+
   end
+
+
 
   def edit
   end
