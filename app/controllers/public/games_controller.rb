@@ -1,4 +1,6 @@
 class Public::GamesController < ApplicationController
+  before_action :authenticate_customer!, except: [:top]
+
   def show
     @game = Game.find(params[:id])
     @review_new = Review.new
