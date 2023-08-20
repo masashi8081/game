@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
 class Public::SessionsController < Devise::SessionsController
-  # before_action :configure_sign_in_params, only: [:create]
+  #before_action :configure_sign_in_params, only: [:create]
+  before_action :customer_state, only: [:create]
 
   # GET /resource/sign_in
   # def new
@@ -27,10 +28,14 @@ class Public::SessionsController < Devise::SessionsController
   def customer_state
     @customer = Customer.find_by(email: params[:customer][:email])
     if !@customer
-      if @customer.valid_password?(params[:customer][:password]) && (@customer.active_for_authentication? == false)
-        flash[:alert] = "退会済みの会員様です。"
+      if @customer.valid_password?(params[:customer][:password]) && (@customer.is_deleted == true)
+         flash[:notice] = "退会済みの会員様です。"
          redirect_to new_customer_session_path
+      else
+        flash[:notice] = "項目を入力してください"
       end
+    else
+      flash[:notice] = "該当するユーザーが見当たりません"
     end
   end
 

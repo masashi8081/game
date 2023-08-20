@@ -4,6 +4,11 @@
       <h2>ログイン</h2>
     </div>
   </div>
+  <div class="row">
+    <div class="col">
+      <%= flash[:notice] %>
+    </div>
+  </div>
 
   <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
 
