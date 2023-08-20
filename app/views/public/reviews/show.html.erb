@@ -32,7 +32,10 @@
       </div>
 
           <script>
+          $(document).on("turbolinks:load", function(){
              var elem_star = document.querySelector("#rate_<%= @review.id %>");
+             if (elem_star == null) return;
+             elem_star.innerHTML = "";
              var opt_star = {
               starOn: "<%= asset_path('star-on.png') %>",
               starOff: "<%= asset_path('star-off.png') %>",
@@ -41,6 +44,8 @@
               readOnly: true,
             };
             window.raty(elem_star, opt_star);
+
+          });
           </script>
        <div class="border-bottom" style="padding:10px;"></div>
 
@@ -71,11 +76,11 @@
         <div class="col-md-12 text-center">
           <%= form_with model: [@review, @review_comment] do |f| %>
             <%= f.text_area :comment, size: "50x5", placeholder: "コメントをここに" %>
+            <div class="col-md-12 text-center">
+              <%= f.submit "送信する", class:"btn btn-success" %>
+            </div>
+          <% end %>
         </div>
-        <div class="col-md-12 text-center">
-          <%= f.submit "送信する", class:"btn btn-success" %>
-        </div>
-        <% end %>
       </div>
 
 </div>
