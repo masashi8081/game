@@ -37,4 +37,5 @@ https://docs.google.com/spreadsheets/d/1LWB_6PdJetvZtPZ8lJDUOF__8KRGV7NnGWlEyrtb
 - IDE：Cloud9
 
 ## 使用素材
-使用検討中
+- ロゴ　https://www.canva.com
+- api https://webservice.rakuten.co.jp
